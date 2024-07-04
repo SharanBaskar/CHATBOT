@@ -1,0 +1,106 @@
+{
+  "startNode": "node1",
+  "nodes": {
+    "node1": {
+      "type": "question",
+      "text": "Welcome to our service! How can I help you today?",
+      "answers": [
+        { "text": "I have a question about my order.", "next": "node2" },
+        { "text": "I need technical support.", "next": "node3" },
+        { "text": "I need to take leave.", "next": "node8" }
+      ]
+    },
+    "node2": {
+      "type": "input",
+      "text": "Sure, can you please provide your order number?",
+      "next": "node4"
+    },
+    "node3": {
+      "type": "question",
+      "text": "Our technical support team will assist you shortly.",
+      "answers": [
+        { "text": "Create Ticket", "next": "node14" },
+        { "text": "I need to take leave.", "next": "node8" }
+      ]
+    },
+    "node4": {
+      "type": "question",
+      "text": "Thank you! Your order is on its way and should arrive in 3-5 business days. Is there anything else I can help you with?",
+      "answers": [
+        { "text": "No, that's all. Thank you!", "next": "node5" },
+        { "text": "Yes, I have another question.", "next": "node6" }
+      ]
+    },
+    "node5": {
+      "type": "statement",
+      "text": "You're welcome! Have a great day!"
+    },
+    "node6": {
+      "type": "input",
+      "text": "Feel free to ask",
+      "next":"node7"
+    },
+    "node7": {
+      "type": "question",
+      "text": "I am still now learninng. Kindly contact your IT Admin",
+      "answers": [
+        { "text": "No, that's all. Thank you!", "next":"node5"},
+        { "text": "Any other questions.", "next": "node6" }
+      ]
+    },
+    "node8": {
+      "type": "question",
+      "text": "Welcome to the Leave Application Assistant! Are you ready to apply for leave?",
+      "answers": [
+        { "text": "Yes, I'm ready.", "next":"node9"},
+        { "text": "No, I have a question first.", "next": "node6" }
+      ]
+    },
+    "node9": {
+      "type": "question",
+      "text": "Great! What type of leave are you applying for?",
+      "answers": [
+        { "text": "Casual Leave", "next":"node10"},
+        { "text": "Medical Leave", "next": "node1" }
+      ]
+    },
+    "node10": {
+      "type": "input",
+      "text": "Got it. For how many days are you planning to take casual leave?",
+      "next":"node11"
+    },
+    "node11": {
+      "type": "input",
+      "text": "Please provide the start date for your casual leave. (Format: YYYY-MM-DD)",
+      "next": "node12"
+    }
+    ,
+    "node12": {
+      "type": "input",
+      "text": "Thank you! Please provide the end date for your casual leave. (Format: YYYY-MM-DD)",
+      "next": "node13"
+    },
+    "node13": {
+      "type": "question",
+      "text": "Do you have any other Questions?",
+      "answers": [
+        { "text": "No, that's all. Thank you!", "next": "node5" },
+        { "text": "Yes, I have another question.", "next": "node6" }
+      ]
+    },
+    "node14": {
+      "type": "input",
+      "text": "Enter your employee Id",
+      "next": "node15"
+    },
+    "node15": {
+      "type": "input",
+      "text": "Provide the reason to raise a ticket ",
+      "answers": [
+        { "text": "No, that's all. Thank you!", "next": "node5" },
+        { "text": "Yes, I have another question.", "next": "node6" }
+      ]
+    }
+
+  }
+}

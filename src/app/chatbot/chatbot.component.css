@@ -1,0 +1,119 @@
+/* chatbot.component.css */
+
+/* Container for the chatbot */
+.chat-container {
+  max-width: 400px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Chat messages container */
+.message {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+/* Message from the bot */
+.bot-message {
+  justify-content: flex-start;
+}
+
+/* Message from the user */
+.user-message {
+  justify-content: flex-end;
+}
+
+/* Bot message bubble */
+.bot-message .text {
+  background-color: #e0e0e0;
+  color: #000;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+/* User message bubble */
+.user-message .text {
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+/* Answers container */
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+/* Answer button */
+.answers button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.answers button:hover {
+  background-color: #45a049;
+}
+
+/* User input container */
+.user-input {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px;
+}
+
+/* Input field */
+.user-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+}
+
+/* Submit button */
+.user-input button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.user-input button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive design */
+@media (max-width: 500px) {
+  .chat-container {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+/* Bot message icon */
+.message-icon {
+  display: flex;
+  align-items: flex-start;
+  margin-right: 10px;
+}
