@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CouchdbService } from '../couchdb.service'; // Import the service
 
 interface Answer {
   text: string;
@@ -34,11 +35,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('chatContent') private chatContent!: ElementRef;
 
-  constructor(private http: HttpClient) {}
+  constructor(private couchdbService: CouchdbService) {} // Inject the service
 
   ngOnInit(): void {
-    this.http.get<DecisionTree>('assets/decision-tree.json').subscribe(data => {
-      this.decisionTree = data;
+    this.couchdbService.getDecisionTree().subscribe(data => {
+      this.decisionTree = data.data;
       this.currentNode = this.decisionTree.nodes[this.decisionTree.startNode];
       this.addMessage('bot', this.currentNode.text);
     });
@@ -55,6 +56,18 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   selectAnswer(answer: Answer): void {
     this.addMessage('user', answer.text);
+
+    // Check for redirection conditions
+    if (this.currentNode.text === "Welcome to our Ticket service!") {
+      if (answer.text === 'Raise Ticket' || answer.text === 'Ticket Status') {
+        window.open('https://e.chain.portal.url', '_blank');
+      }
+    } else if (this.currentNode.text === "Welcome to our Technical service!") {
+      if (answer.text === 'Raise Support') {
+        window.open('https://appTrack.portal.url', '_blank');
+      }
+    }
+
     this.currentNode = this.decisionTree.nodes[answer.next];
     this.processNode();
   }
@@ -103,24 +116,19 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     return text.replace(/\[\w+\]/g, match => this.leaveDetails[match.slice(1, -1)] || match);
   }
 
-  toggleMinimize(): void {
+  toggleMinimize(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
     this.isMinimized = !this.isMinimized;
   }
-
-  confirmClose(): void {
-    if (confirm('Do you want to close the chat?')) {
-      this.closeChat();
-    }
-  }
-
-  closeChat(): void {
+  
+  closeChat(event?: Event): void {
     const confirmClose = confirm("Are you sure you want to close the chat?");
-    if (confirmClose) {
-      const chatContainer = document.getElementById('chat-container');
-      if (chatContainer) {
-        chatContainer.style.display = 'none';
-      }
+    if (event) {
+      event.stopPropagation();
     }
+    this.isMinimized = !this.isMinimized;
   }
 
   private scrollToBottom(): void {
