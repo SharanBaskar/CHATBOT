@@ -1,8 +1,8 @@
-<div class="chat-container" [ngClass]="{ minimized: isMinimized }" id="chat-container">
+<div class="chat-container" [ngClass]="{ minimized: isMinimized }" (click)="isMinimized ? toggleMinimize() : null" id="chat-container">
   <div class="chat-header">
-    <span class="chat-title">JARVIS</span>
-    <button class="minimize-btn" (click)="toggleMinimize()">_</button>
-    <button class="close-btn" (click)="confirmClose()">x</button>
+    <span class="chat-title">ChainBot</span>
+    <button class="minimize-btn" (click)="toggleMinimize($event)">_</button>
+    <button class="close-btn" (click)="closeChat($event)">x</button>
   </div>
 
   <div class="chat-content" id="chat-content" #chatContent>
@@ -23,7 +23,7 @@
 
     <div *ngIf="currentNode.type === 'input'" class="user-input">
       <div class="input-icon">
-        <img style="width: 40px; height: 40px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnRWFs0zshslKNFEmRVUuHgYNfmk5_-M4Qgw&s" alt="User Icon" />
+        <img style="width: 20px; height: 20px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnRWFs0zshslKNFEmRVUuHgYNfmk5_-M4Qgw&s" alt="User Icon" />
       </div>
       <input [(ngModel)]="userInput" placeholder="Type your response..." />
       <button (click)="submitInput()">Submit</button>
@@ -32,6 +32,6 @@
   </div>
 
   <div class="chat-minimized" id="chat-minimized" (click)="toggleMinimize()" *ngIf="isMinimized">
-    <img style="width: 40px; height: 40px;" src="https://static.thenounproject.com/png/1156284-200.png">
+    <img style="width: 50px; height: 50px;" src="https://chatbot.design/favicon.ico">
   </div>
 </div>
